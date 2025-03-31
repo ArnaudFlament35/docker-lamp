@@ -1,2 +1,3 @@
 /config/ssl
 /data
+/logs/apache2/*
