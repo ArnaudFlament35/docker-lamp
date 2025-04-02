@@ -1,7 +1,7 @@
 services:
   php:
     container_name: ${PROJECT_NAME}-php
-    image: docker-lamp-node-ssl:1.2
+    image: docker-lamp-user:1.0
     restart: "always"
     ports:
       - "${HOST_MACHINE_UNSECURE_HOST_PORT}:80"

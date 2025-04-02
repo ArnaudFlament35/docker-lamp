@@ -1,4 +1,13 @@
 FROM php:8.0-apache
+
+ARG USER_ID
+ARG GROUP_ID
+
+RUN groupadd -f -g $GROUP_ID user 
+RUN useradd -u $USER_ID -g $GROUP_ID user
+
+
+
 # Update
 RUN apt-get -y update --fix-missing && \
     apt-get upgrade -y && \
@@ -59,6 +68,7 @@ libpng-dev && \
 
 # install node npm
 RUN apt-get update && apt-get install -y nodejs npm
+
 #WORKDIR is /var/www/html
 COPY . /var/www/html/
 RUN npm install
@@ -69,3 +79,5 @@ RUN mkdir -p /etc/apache2/ssl
 RUN a2enmod ssl && a2enmod rewrite
 # Enable apache modules
 RUN a2enmod rewrite headers
+
+USER user
